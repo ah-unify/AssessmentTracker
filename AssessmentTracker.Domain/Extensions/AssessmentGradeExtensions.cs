@@ -1,8 +1,10 @@
+using AssessmentTracker.Domain.ValueObjects;
+
 namespace AssessmentTracker.Domain.Extensions;
 
 public static class AssessmentGradeExtensions
 {
-    public static string GetLetterGrade(this AssessmentGrade grade)
+    public static string GetLetterGrade(this Grade grade)
     {
         return grade.Value switch
         {

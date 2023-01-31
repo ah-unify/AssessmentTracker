@@ -4,6 +4,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssessmentTracker.Api", "As
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssessmentTracker.Domain", "AssessmentTracker.Domain\AssessmentTracker.Domain.csproj", "{0C5147B1-5470-4097-90E4-6C2B451AB182}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{35859CFE-7B27-4A1D-A682-D7692422F4CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{57861BE9-1916-4D04-9487-92155ABDEA5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssessmentTracker.Persistence", "AssessmentTracker.Persistence\AssessmentTracker.Persistence.csproj", "{2BFCA2FD-E04E-43D0-8EEA-F722878CB77C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssessmentTracker.Integration.Testing", "AssessmentTracker.Integration.Testing\AssessmentTracker.Integration.Testing.csproj", "{0C7E0C77-8D2A-49E2-BA63-48C18318AE65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +26,19 @@ Global
 		{0C5147B1-5470-4097-90E4-6C2B451AB182}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C5147B1-5470-4097-90E4-6C2B451AB182}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C5147B1-5470-4097-90E4-6C2B451AB182}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BFCA2FD-E04E-43D0-8EEA-F722878CB77C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BFCA2FD-E04E-43D0-8EEA-F722878CB77C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BFCA2FD-E04E-43D0-8EEA-F722878CB77C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BFCA2FD-E04E-43D0-8EEA-F722878CB77C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C7E0C77-8D2A-49E2-BA63-48C18318AE65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C7E0C77-8D2A-49E2-BA63-48C18318AE65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C7E0C77-8D2A-49E2-BA63-48C18318AE65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C7E0C77-8D2A-49E2-BA63-48C18318AE65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{18EBC290-3790-4E3E-8311-8C9F83A6C332} = {35859CFE-7B27-4A1D-A682-D7692422F4CD}
+		{0C5147B1-5470-4097-90E4-6C2B451AB182} = {35859CFE-7B27-4A1D-A682-D7692422F4CD}
+		{2BFCA2FD-E04E-43D0-8EEA-F722878CB77C} = {35859CFE-7B27-4A1D-A682-D7692422F4CD}
+		{0C7E0C77-8D2A-49E2-BA63-48C18318AE65} = {57861BE9-1916-4D04-9487-92155ABDEA5F}
 	EndGlobalSection
 EndGlobal
