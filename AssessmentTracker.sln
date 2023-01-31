@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssessmentTracker.Api", "AssessmentTracker.Api\AssessmentTracker.Api.csproj", "{18EBC290-3790-4E3E-8311-8C9F83A6C332}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssessmentTracker.Domain", "AssessmentTracker.Domain\AssessmentTracker.Domain.csproj", "{0C5147B1-5470-4097-90E4-6C2B451AB182}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18EBC290-3790-4E3E-8311-8C9F83A6C332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18EBC290-3790-4E3E-8311-8C9F83A6C332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18EBC290-3790-4E3E-8311-8C9F83A6C332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18EBC290-3790-4E3E-8311-8C9F83A6C332}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C5147B1-5470-4097-90E4-6C2B451AB182}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C5147B1-5470-4097-90E4-6C2B451AB182}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C5147B1-5470-4097-90E4-6C2B451AB182}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C5147B1-5470-4097-90E4-6C2B451AB182}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
