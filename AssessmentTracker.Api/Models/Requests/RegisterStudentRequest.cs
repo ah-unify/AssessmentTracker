@@ -1,6 +1,6 @@
 namespace AssessmentTracker.Api.Models.Requests;
 
-public class CreateStudentRequest
+public class RegisterStudentRequest
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }

@@ -1,6 +1,6 @@
 namespace AssessmentTracker.Api.Models.Requests;
 
-public class CreateCourseRequest
+public class RegisterCourseRequest
 {
     public string Name { get; set; }
     public List<AssessmentDto> Assessments { get; set; }

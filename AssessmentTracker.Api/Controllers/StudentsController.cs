@@ -1,3 +1,4 @@
+using AssessmentTracker.Api.Models;
 using AssessmentTracker.Api.Models.Requests;
 using AssessmentTracker.Api.Models.Responses;
 using AssessmentTracker.Domain.Entities;
@@ -17,31 +18,48 @@ public class StudentsController : ApiControllerBase
         _context = context;
     }
 
-    [HttpGet]
-    public async Task<Student?> GetStudent(Guid id)
+    [HttpGet()]
+    public async Task<StudentDto> GetStudent(Guid id)
     {
-        return _context.Students
+        var student = _context.Students
             .Include(x => x.Courses)
             .Include(x => x.AssessmentRecords)
             .FirstOrDefault(x => x.Id == id);
+
+        if (student == null)
+        {
+            return new StudentDto();
+        }
+
+        return new StudentDto
+        {
+            Id = student.Id,
+            FirstName = student.FirstName,
+            LastName = student.LastName,
+            Courses = student.Courses.Select(x => new CourseDto()
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList()
+        };
     }
 
     [HttpPost]
-    public async Task<ApiResponse> RegisterStudent(CreateStudentRequest request)
+    public async Task<IActionResult> RegisterStudent(RegisterStudentRequest request)
     {
         if (string.IsNullOrWhiteSpace(request.FirstName))
         {
-            return ApiResponse.Failure("FirstName must be provided");
+            return BadRequest($"{nameof(request.FirstName)} must be provided.");
         }
 
         if (string.IsNullOrWhiteSpace(request.LastName))
         {
-            return ApiResponse.Failure("LastName must be provided");
+            return BadRequest($"{nameof(request.LastName)} must be provided.");
         }
 
         if (DateTime.UtcNow - request.DateOfBirth < TimeSpan.FromDays(365 * 18))
         {
-            return ApiResponse.Failure("Student must be at least 18 years old.");
+            return BadRequest("Student must be at least 18 years old.");
         }
 
         var student = new Student
@@ -56,41 +74,42 @@ public class StudentsController : ApiControllerBase
 
         await _context.SaveChangesAsync();
 
-        return ApiResponse.Success().WithCustomProperties(new
+        return Ok(new StudentRegistered
         {
             StudentId = student.Id
         });
     }
 
+
     [HttpPost]
-    public async Task<ApiResponse> RegisterStudentForCourse(RegisterStudentForCourseRequest request)
+    public async Task<IActionResult> RegisterStudentForCourse(RegisterStudentForCourseRequest request)
     {
         var student = await _context.Students.FindAsync(request.StudentId);
         if (student == null)
         {
-            return ApiResponse.Failure("Student not found by ID");
+            return BadRequest("Student not found.");
         }
 
         var course = await _context.Courses.FindAsync(request.CourseId);
         if (course == null)
         {
-            return ApiResponse.Failure("Course not found by ID");
+            return BadRequest("Course not found.");
         }
 
         student.RegisterCourse(course);
 
         await _context.SaveChangesAsync();
-        return ApiResponse.Success();
+        return Ok();
     }
 
     [HttpPost]
-    public async Task<ApiResponse> RecordAssessment(RecordAssessmentRequest request)
+    public async Task<IActionResult> RecordAssessment(RecordAssessmentRequest request)
     {
         if (!Grade.IsValid(request.Grade))
         {
-            return ApiResponse.Failure("Not a valid grade.");
+            return BadRequest("Grade invalid.");
         }
-        
+
         var student = await _context.Students
             .Include(x => x.Courses)
             .ThenInclude(x => x.Assessments)
@@ -98,28 +117,28 @@ public class StudentsController : ApiControllerBase
 
         if (student == null)
         {
-            return ApiResponse.Failure("Student not found.");
+            return BadRequest("Student not found.");
         }
 
         var assessment = student
             .Courses
             .SelectMany(x => x.Assessments)
             .FirstOrDefault(x => x.Id == request.AssessmentId);
-        
+
         if (assessment == null)
         {
-            return ApiResponse.Failure("Assessment not found in student's courses.");
+            return BadRequest("Assessment not found in student's courses.");
         }
 
         var assessmentRecord = new AssessmentRecord
         {
             Grade = new Grade(request.Grade)
         };
-        
+
         student.RecordAssessment(assessmentRecord);
         assessment.BindRecord(assessmentRecord);
 
         await _context.SaveChangesAsync();
-        return ApiResponse.Success();
+        return Ok();
     }
 }

@@ -27,16 +27,16 @@ public class CoursesController : ApiControllerBase
     }
 
     [HttpPost]
-    public async Task<ApiResponse> RegisterCourse(CreateCourseRequest request)
+    public async Task<IActionResult> RegisterCourse(RegisterCourseRequest request)
     {
         if (string.IsNullOrWhiteSpace(request.Name))
         {
-            return ApiResponse.Failure("Name must be provided");
+            return BadRequest("Name must be provided");
         }
 
         if (request.Assessments.Sum(x => x.CoursePercentage) != 100)
         {
-            return ApiResponse.Failure("Assessment percentages must add up to a total of 100");
+            return BadRequest("Assessment percentages must add up to a total of 100");
         }
 
         var course = new Course()
@@ -56,9 +56,9 @@ public class CoursesController : ApiControllerBase
 
         await _context.SaveChangesAsync();
 
-        return ApiResponse.Success().WithCustomProperties(new
+        return Ok(new CourseRegistered
         {
-            courseId = course.Id
+            CourseId = course.Id
         });
     }
 }

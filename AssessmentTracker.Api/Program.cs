@@ -6,7 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers().AddJsonOptions(x=>x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+builder.Services.AddControllers();
+builder.Services.ConfigureHttpJsonOptions(x => x.SerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -25,7 +26,7 @@ try
 }
 catch(Exception e)
 {
-    var logger = services.GetRequiredService<ILogger<Program>>();
+    var logger = services.GetRequiredService<ILogger<AssessmentTracker.Api.Program>>();
     logger.LogCritical(e, "Migration failure on startup.");
 }
 
@@ -43,3 +44,11 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+namespace AssessmentTracker.Api
+{
+    public partial class Program
+    {
+    
+    }
+}
