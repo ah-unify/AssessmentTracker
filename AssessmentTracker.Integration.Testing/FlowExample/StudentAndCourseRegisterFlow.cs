@@ -34,7 +34,7 @@ public class StudentAndCourseRegisterFlow : IClassFixture<AssessmentTrackerAppli
     /// Covers the flow of registering a student, course, and then linking the two.
     /// </summary>
     [Fact]
-    public async Task Should_CreateStudent_Successfully()
+    public async Task Should_CreateStudent_AndCreateCourse_AndRegisterStudentForCourse()
     {
         // When
         var firstName = "Jerry";
@@ -89,7 +89,6 @@ public class StudentAndCourseRegisterFlow : IClassFixture<AssessmentTrackerAppli
         
         // When
         var getStudentResponse = await _client.GetAsync($"{GetStudent}?id={studentId}");
-        var string2 = await getStudentResponse.Content.ReadAsStringAsync();
         var student = await getStudentResponse.Content.ReadFromJsonAsync<StudentDto>();
         
         // Then
@@ -98,13 +97,5 @@ public class StudentAndCourseRegisterFlow : IClassFixture<AssessmentTrackerAppli
         Assert.Contains(student.Courses, x => x.Id == courseId);
         Assert.Equal(firstName, student.FirstName);
         Assert.Equal(lastName, student.LastName);
-    }
-
-    private async Task<Student?> FindStudent(Guid studentId)
-    {
-        using var scope = _factory.Services.CreateScope();
-        var context = scope.ServiceProvider.GetRequiredService<DataContext>();
-        var student = await context!.Students.FirstOrDefaultAsync(x => x.Id == studentId);
-        return student;
     }
 }

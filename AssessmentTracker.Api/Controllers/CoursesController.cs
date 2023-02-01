@@ -39,6 +39,11 @@ public class CoursesController : ApiControllerBase
             return BadRequest("Assessment percentages must add up to a total of 100");
         }
 
+        if (_context.Courses.Any(x => x.Name == request.Name))
+        {
+            return BadRequest("A course with this name already exists.");
+        }
+
         var course = new Course()
         {
             Name = request.Name

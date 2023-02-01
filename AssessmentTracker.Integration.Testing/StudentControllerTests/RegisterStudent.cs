@@ -6,14 +6,12 @@ using AssessmentTracker.Domain.Entities;
 using AssessmentTracker.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Xunit.Abstractions;
 
 namespace AssessmentTracker.Integration.Testing.StudentControllerTests;
 
 public class RegisterStudent : IClassFixture<AssessmentTrackerApplicationFactory>
 {
     private readonly AssessmentTrackerApplicationFactory _factory;
-    private readonly ITestOutputHelper _testOutputHelper;
 
     /// <summary>
     /// This will be the running API
@@ -22,10 +20,9 @@ public class RegisterStudent : IClassFixture<AssessmentTrackerApplicationFactory
 
     private const string Endpoint = "/Students/RegisterStudent";
 
-    public RegisterStudent(AssessmentTrackerApplicationFactory factory, ITestOutputHelper testOutputHelper)
+    public RegisterStudent(AssessmentTrackerApplicationFactory factory)
     {
         _factory = factory;
-        _testOutputHelper = testOutputHelper;
         _client = factory.CreateClient();
     }
 
@@ -44,8 +41,6 @@ public class RegisterStudent : IClassFixture<AssessmentTrackerApplicationFactory
         var response = await _client.PostAsJsonAsync(Endpoint, request);
 
         // Then
-        var enifnewifn = await response.Content.ReadAsStringAsync();
-        _testOutputHelper.WriteLine(enifnewifn);
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         var responseContent = await response.Content.ReadFromJsonAsync<StudentRegistered>();
 

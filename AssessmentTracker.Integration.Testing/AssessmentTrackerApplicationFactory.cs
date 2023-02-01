@@ -1,4 +1,3 @@
-using AssessmentTracker.Api;
 using AssessmentTracker.Persistence;
 using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Configurations;
@@ -14,8 +13,8 @@ namespace AssessmentTracker.Integration.Testing;
 public class AssessmentTrackerApplicationFactory : WebApplicationFactory<Program>,
     IAsyncLifetime // IAsyncLifetime allows setup/ teardown per test class basis
 {
-    private int ContainerPort = Random.Shared.Next(55000, 60000);
     private TestcontainerDatabase _postgresContainer;
+    private int ContainerPort = Random.Shared.Next(55000, 60000);
 
     public AssessmentTrackerApplicationFactory()
     {
