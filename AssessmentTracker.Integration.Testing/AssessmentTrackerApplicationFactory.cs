@@ -14,7 +14,7 @@ public class AssessmentTrackerApplicationFactory : WebApplicationFactory<Program
     IAsyncLifetime // IAsyncLifetime allows setup/ teardown per test class basis
 {
     private TestcontainerDatabase _postgresContainer;
-    private int ContainerPort = Random.Shared.Next(55000, 60000);
+    private int _containerPort = Random.Shared.Next(55000, 60000);
 
     public AssessmentTrackerApplicationFactory()
     {
@@ -25,7 +25,7 @@ public class AssessmentTrackerApplicationFactory : WebApplicationFactory<Program
                 Database = "postgres",
                 Username = "root",
                 Password = "password",
-                Port = ContainerPort
+                Port = _containerPort
             })
             .Build();
     }
@@ -42,7 +42,7 @@ public class AssessmentTrackerApplicationFactory : WebApplicationFactory<Program
 
             x.AddDbContext<DataContext>(x =>
                 x.UseNpgsql(
-                    $"Host=localhost;User ID=root;Password=password;Port={ContainerPort};Database=AssessmentTrackerLocal")
+                    $"Host=localhost;User ID=root;Password=password;Port={_containerPort};Database=AssessmentTrackerLocal")
             );
         });
     }

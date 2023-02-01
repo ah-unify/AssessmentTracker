@@ -22,7 +22,7 @@ try
 }
 catch(Exception e)
 {
-    var logger = services.GetRequiredService<ILogger<AssessmentTracker.Api.Program>>();
+    var logger = services.GetRequiredService<ILogger<Program>>();
     logger.LogCritical(e, "Migration failure on startup.");
 }
 
@@ -40,9 +40,6 @@ app.MapControllers();
 
 app.Run();
 
+public partial class Program
 {
-    public partial class Program
-    {
-    
-    }
 }
