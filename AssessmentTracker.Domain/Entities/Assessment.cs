@@ -10,5 +10,5 @@ public class Assessment : Entity
     public Guid CourseId { get; protected set; }
     
     public virtual Course Course { get; protected set; }
-    public virtual List<AssessmentRecord> Records { get; protected set; }
+    public virtual List<AssessmentRecord> AssessmentRecords { get; protected set; }
 }

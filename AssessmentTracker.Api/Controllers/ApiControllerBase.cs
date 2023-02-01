@@ -1,6 +1,10 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace AssessmentTracker.Api.Controllers;
 
-public class ApiControllerBase
+[ApiController]
+[Route("[controller]/[action]")]
+public class ApiControllerBase : ControllerBase
 {
     
 }

@@ -11,7 +11,7 @@ public class Student : Entity
 
     public void RegisterCourse(Course course)
     {
-        RegisteredCourses.Add(course);
+        Courses.Add(course);
     }
 
     public void RecordAssessment(AssessmentRecord assessmentRecord)
@@ -21,10 +21,10 @@ public class Student : Entity
 
     public Grade GetTotalGradeForCourse(Guid courseId)
     {
-        return Grade.From(AssessmentRecords.Where(x => x.Assessment.CourseId == courseId)
+        return new Grade(AssessmentRecords.Where(x => x.Assessment.CourseId == courseId)
             .Sum(x => x.Grade.Value * x.Assessment.CoursePercentage.Value));
     }
 
-    public virtual List<Course> RegisteredCourses { get; protected set; }
+    public virtual List<Course> Courses { get; protected set; }
     public virtual List<AssessmentRecord> AssessmentRecords { get; protected set; }
 }

@@ -4,12 +4,11 @@ public record Percentage
 {
     public decimal Value { get; }
 
-    protected Percentage(decimal value)
+    protected Percentage()
     {
-        Value = value;
     }
 
-    public static Percentage From(decimal value)
+    public Percentage(decimal value)
     {
         if (value is < 0 or > 100)
         {
@@ -17,6 +16,6 @@ public record Percentage
                                                   $"Provided value: {value}");
         }
 
-        return new Percentage(value);
+        Value = value;
     }
 }

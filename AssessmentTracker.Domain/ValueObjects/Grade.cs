@@ -4,12 +4,11 @@ public record Grade
 {
     public decimal Value { get; }
 
-    protected Grade(decimal value)
+    protected Grade()
     {
-        Value = value;
     }
 
-    public static Grade From(decimal value)
+    public Grade(decimal value)
     {
         if (value is < 0 or > 100)
         {
@@ -17,6 +16,6 @@ public record Grade
                                                   $"Provided value: {value}");
         }
 
-        return new Grade(value);
+        Value = value;
     }
 }
