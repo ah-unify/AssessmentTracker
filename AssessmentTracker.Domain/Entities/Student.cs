@@ -25,6 +25,6 @@ public class Student : Entity
             .Sum(x => x.Grade.Value * x.Assessment.CoursePercentage.Value));
     }
 
-    public virtual List<Course> Courses { get; protected set; }
-    public virtual List<AssessmentRecord> AssessmentRecords { get; protected set; }
+    public virtual List<Course> Courses { get; protected set; } = new();
+    public virtual List<AssessmentRecord> AssessmentRecords { get; protected set; } = new();
 }

@@ -16,6 +16,6 @@ public class Course : Entity
         Assessments = assessments;
     }
 
-    public virtual List<Student> Students { get; protected set; }
-    public virtual List<Assessment> Assessments { get; protected set; }
+    public virtual List<Student> Students { get; protected set; } = new();
+    public virtual List<Assessment> Assessments { get; protected set; }= new();
 }
