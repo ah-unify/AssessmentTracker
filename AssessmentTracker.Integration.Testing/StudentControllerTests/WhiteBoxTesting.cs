@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AssessmentTracker.Integration.Testing.StudentControllerTests;
 
-public class RegisterStudent : IClassFixture<AssessmentTrackerApplicationFactory>
+public class WhiteBoxTesting : IClassFixture<AssessmentTrackerApplicationFactory>
 {
     private readonly AssessmentTrackerApplicationFactory _factory;
 
@@ -20,7 +20,7 @@ public class RegisterStudent : IClassFixture<AssessmentTrackerApplicationFactory
 
     private const string Endpoint = "/Students/RegisterStudent";
 
-    public RegisterStudent(AssessmentTrackerApplicationFactory factory)
+    public WhiteBoxTesting(AssessmentTrackerApplicationFactory factory)
     {
         _factory = factory;
         _client = factory.CreateClient();

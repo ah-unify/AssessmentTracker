@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AssessmentTracker.Integration.Testing.FlowExample;
 
-public class StudentAndCourseRegisterFlow : IClassFixture<AssessmentTrackerApplicationFactory>
+public class BlackBoxTesting : IClassFixture<AssessmentTrackerApplicationFactory>
 {
     private readonly AssessmentTrackerApplicationFactory _factory;
 
@@ -24,7 +24,7 @@ public class StudentAndCourseRegisterFlow : IClassFixture<AssessmentTrackerAppli
     private const string RegisterStudentForCourse = "/Students/RegisterStudentForCourse";
     private const string GetStudent = "/Students/GetStudent";
 
-    public StudentAndCourseRegisterFlow(AssessmentTrackerApplicationFactory factory)
+    public BlackBoxTesting(AssessmentTrackerApplicationFactory factory)
     {
         _factory = factory;
         _client = factory.CreateClient();

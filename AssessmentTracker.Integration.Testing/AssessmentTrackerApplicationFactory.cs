@@ -32,7 +32,7 @@ public class AssessmentTrackerApplicationFactory : WebApplicationFactory<Program
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        // Configures services use in the API under test
+        // Configures services use in the API under test`
         builder.ConfigureServices(x =>
         {
             x.RemoveAll(typeof(DataContext));

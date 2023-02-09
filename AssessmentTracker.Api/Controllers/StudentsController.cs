@@ -79,8 +79,7 @@ public class StudentsController : ApiControllerBase
             StudentId = student.Id
         });
     }
-
-
+    
     [HttpPost]
     public async Task<IActionResult> RegisterStudentForCourse(RegisterStudentForCourseRequest request)
     {
